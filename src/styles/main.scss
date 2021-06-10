@@ -1,0 +1,45 @@
+* {
+  font-family: Arial, Helvetica, sans-serif
+  
+}
+body {
+  margin: 0 auto;
+}
+.artist-index {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: rgb(28, 28, 28);
+  .artist-card {
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(101, 101, 101);
+    color: white;
+    margin: 2.5%;
+    width: 400px;
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}
+
+.navbar {
+  height: 3em;
+  width: 100%;
+  background-color: rgb(48, 48, 48);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .navbar-item {
+    padding: 0 10px;
+    font-size: 1.2em;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: rgb(76, 135, 207);
+    }
+  }
+}
