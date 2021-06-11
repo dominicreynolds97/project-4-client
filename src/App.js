@@ -5,6 +5,7 @@ import Home from './components/common/Home'
 import TrackIndex from './components/artists/TrackIndex'
 import TrackCreate from './components/artists/TrackCreate'
 import ArtistIndex from './components/artists/ArtistIndex'
+import ArtistShow from './components/artists/ArtistShow'
 import LiveMusic from './components/liveMusic/LiveMusic'
 import LogIn from './components/account/LogIn'
 import Register from './components/account/Register'
@@ -18,6 +19,7 @@ function App() {
         <Route exact path='/' component={Home}/>
         <Route path='/tracks/create' component={TrackCreate}/>
         <Route path='/tracks' component={TrackIndex}/>
+        <Route path='/artists/:id' component={ArtistShow}/>
         <Route path='/artists' component={ArtistIndex}/>
         <Route path='/live-music' component={LiveMusic}/>
         <Route path='/login' component={LogIn}/>

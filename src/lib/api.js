@@ -1,10 +1,9 @@
 import axios from 'axios'
-import { getToken } from './auth'
 import { headers } from './headers'
 const baseUrl = '/api'
 
 export function getAllTracks() {
-  return axios.get('/api/tracks')
+  return axios.get('/api/tracks/')
 }
 
 export function createTrack(formdata) {
@@ -12,9 +11,21 @@ export function createTrack(formdata) {
 }
 
 export function getAllArtists() {
-  return axios.get(`${baseUrl}/artists`)
+  return axios.get(`${baseUrl}/artists/`)
 }
 
 export function getSingleArtist(artistId) {
-  return axios.get(`${baseUrl}/artists/${artistId}`)
+  return axios.get(`${baseUrl}/artists/${artistId}/`)
+}
+
+export function favorite(table, tableId) {
+  return axios.post(`${baseUrl}/${table}/${tableId}/favorite/`, headers)
+}
+
+export function loginUser(formdata) {
+  return axios.post(`${baseUrl}/auth/login/`, formdata)
+}
+
+export function registerUser(formdata) {
+  return axios.post(`${baseUrl}/auth/register/`, formdata)
 }
