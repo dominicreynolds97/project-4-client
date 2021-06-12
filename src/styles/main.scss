@@ -16,44 +16,31 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: rgb(28, 28, 28);
-  .artist-card {
-    text-align: center;
-    text-decoration: none;
-    border-radius: 10px;
-    background-color: $dark-grey;
-    color: white;
-    margin: 2.5%;
-    width: 400px;
-    img {
-      width: 200px;
-      height: 200px;
-    }
-    &:hover {
-      color: $hover-font-color;
-      background-color: rgb(64, 64, 64);
-    }
-  }
 }
 .account {
   .favorite-row {
     display: flex;
     flex-direction: row;
-    .favorite-card {
-      background-color: $darkest-grey;
-      text-align: center;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      &:hover {
-        cursor: pointer;
-        background-color: $darker-grey;
-        color: $hover-font-color;
-      }
-      .logo {
-        width: 200px;
-        height: 200px;
-      }
-    }
+  }
+}
+
+.display-card {
+  background-color: $darkest-grey;
+  text-align: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 5px;
+  h4 {
+    margin: 10px 0;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $darker-grey;
+    color: $hover-font-color;
+  }
+  .logo {
+    width: 200px;
+    height: 200px;
   }
 }
 
@@ -83,12 +70,25 @@ body {
 
 .artist-show {
   .cover-image {
-    text-align: center;
-    .genres {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    .logo {
+      width: 300px;
+      height: 300px;
+    }
+    .info {
+      flex: 1;
+
+      .genres {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        text-align: center;
+        .genre {
+          width: 200px;
+        }
+      }
     }
   }
   .middle-card{
@@ -104,6 +104,11 @@ body {
         margin-bottom: 0.5em;
       }
     }
+  }
+  .releases {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 

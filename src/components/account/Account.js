@@ -16,8 +16,8 @@ export default function Account() {
     getData()
   }, [])
 
-  const handleClick = (location, id) => {
-    history.push(`/${location}/${id}`)
+  const handleClick = (table, id) => {
+    history.push(`/${table}/${id}`)
   }
 
   return (
@@ -30,11 +30,13 @@ export default function Account() {
           <FavoriteRow
             props={user.favoriteArtists}
             handleClick={handleClick}
+            table="artists"
           />
           <h3>Favorite Releases</h3>
           <FavoriteRow
             props={user.favoriteReleases}
             handleClick={handleClick}
+            table="releases"
           />
         </div>
       }

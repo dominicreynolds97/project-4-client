@@ -27,7 +27,7 @@ export default function Nav() {
       <div className="navbar-end">
         {isLoggedIn ?
           <>
-            <div className="navbar-item" onClick={handleLogout}>Log Out</div>
+            <div className="navbar-item pointer" onClick={handleLogout}>Log Out</div>
             <Link to="/account" className="navbar-item">Account</Link>
           </>
           :

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { getSingleArtist, favorite } from '../../lib/api'
 import { checkFavorite } from '../../hooks/checkFavorite'
+import DisplayCard from './DisplayCard'
 
 export default function ArtistShow() {
   const [artist, setArtist] = useState(null)
@@ -25,19 +26,22 @@ export default function ArtistShow() {
     setFavorited(!favorited)
   }
 
-  const handleReleaseClick = (id) => {
-    history.push(`/releases/${id}`)
-    console.log(id)
+  const handleClick = (table, id) => {
+    history.push(`/${table}/${id}`)
   }
 
   return (
     <div>
       {artist &&
         <div className="artist-show">
+
           <div className="cover-image">
-            <h1>{artist.name}</h1>
-            <h3>{artist.location}</h3>
-            <h4 className="genres">{artist.genres.map(genre => <span key={genre.name}>{genre.name}</span>)}</h4>
+            <img className="logo" src={artist.logo}/>
+            <div className="info">
+              <h1>{artist.name}</h1>
+              <h3>{artist.location}</h3>
+              <h4 className="genres">{artist.genres.map(genre => <span key={genre.name}>{genre.name}</span>)}</h4>
+            </div>
           </div>
           <div className="middle-card">
             <p>{artist.description}</p>
@@ -55,9 +59,12 @@ export default function ArtistShow() {
           </div>
           <div className="releases">
             {artist.releases.map(release => (
-              <div onClick={() => handleReleaseClick(release.id)} key={release.name} className="release-card pointer">
-                <h2>{release.name}</h2>
-              </div>
+              <DisplayCard
+                key={release.name}
+                handleClick={handleClick}
+                {...release}
+                table="releases"
+              />
             ))}
           </div>
         </div>

@@ -1,13 +1,14 @@
-import FavoriteCard from './FavoriteCard'
+import DisplayCard from '../artists/DisplayCard'
 
-export default function FavoriteRow({ props, handleClick }) {
+export default function FavoriteRow({ props, handleClick, table }) {
   return (
     <div className="favorite-row">
       {props.map(card => (
-        <FavoriteCard
+        <DisplayCard
           key={card.name}
           {...card}
           handleClick={handleClick}
+          table={table}
         />
       ))}
     </div>

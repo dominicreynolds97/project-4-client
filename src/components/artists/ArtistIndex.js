@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { getAllArtists } from '../../lib/api'
+import DisplayCard from './DisplayCard'
 
 export default function ArtistIndex() {
   const [artists, setArtists] = useState(null)
@@ -15,8 +16,9 @@ export default function ArtistIndex() {
     getData()
   }, [])
 
-  const handleClick = (id) => {
-    history.push(`/artists/${id}`)
+  const handleClick = (table, id) => {
+    console.log(id)
+    history.push(`/${table}/${id}`)
   }
 
   return (
@@ -25,11 +27,12 @@ export default function ArtistIndex() {
       <div className="artist-index">
         {artists && 
           artists.map(artist => (
-            <div onClick={() => handleClick(artist.id)} key={artist.name} className="artist-card">
-              <h3>{artist.name}</h3>
-              <p>{artist.description}</p>
-              <img src={artist.logo} alt={artist.name}/>
-            </div>
+            <DisplayCard
+              key={artist.name}
+              handleClick={handleClick}
+              table="artists"
+              {...artist}
+            />
           ))
         }
       </div>
