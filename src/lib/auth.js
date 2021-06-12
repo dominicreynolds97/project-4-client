@@ -1,4 +1,5 @@
 export function setToken(token) {
+  console.log('setting token')
   window.localStorage.setItem('token', token)
 }
 

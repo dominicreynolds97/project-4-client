@@ -34,6 +34,26 @@ body {
     }
   }
 }
+.account {
+  .favorite-row {
+    display: flex;
+    flex-direction: row;
+    .favorite-card {
+      text-align: center;
+      &:hover {
+        cursor: pointer;
+      }
+      .logo {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
 
 .navbar {
   height: 3em;
@@ -78,6 +98,15 @@ body {
         margin-bottom: 0.5em;
       }
     }
+  }
+}
+
+.favorite {
+  .favorited {
+    background-color: $hover-font-color;
+  }
+  .not-favorited {
+    background-color: $darker-grey;
   }
 }
 

@@ -14,6 +14,7 @@ export default function LogIn() {
     e.preventDefault()
     try {
       const { data } = await loginUser(formdata)
+      console.log(data)
       setToken(data.token)
       history.push('/')
     } catch (err) {
