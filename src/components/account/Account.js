@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { getSingleUser } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
 import { useHistory } from 'react-router-dom'
+import FavoriteRow from './FavoriteRow'
 
 export default function Account() {
   const [user, setUser] = useState(null)
@@ -26,23 +27,15 @@ export default function Account() {
           <h1>Account</h1>
           <h3>{user.username}</h3>
           <h3>Favorite Artists</h3>
-          <div className="favorite-row">
-            {user.favoriteArtists.map(artist => (
-              <div className="favorite-card" key={artist.name} onClick={() => handleClick('artists', artist.id)}>
-                <h4>{artist.name}</h4>
-                <img className="logo" src={artist.logo}/>
-              </div>
-            ))}
-          </div>
+          <FavoriteRow
+            props={user.favoriteArtists}
+            handleClick={handleClick}
+          />
           <h3>Favorite Releases</h3>
-          <div className="favorite-row">
-            {user.favoriteReleases.map(release => (
-              <div className="favorite-card" key={release.name} onClick={() => handleClick('releases', release.id)}>
-                <h4>{release.name}</h4>
-                <img className="logo" src={release.logo} alt={release.name}/>
-              </div>
-            ))}
-          </div>
+          <FavoriteRow
+            props={user.favoriteReleases}
+            handleClick={handleClick}
+          />
         </div>
       }
     </div>
