@@ -28,11 +28,12 @@ export function getSingleRelease(releaseId) {
   return axios.get(`${baseUrl}/releases/${releaseId}/`)
 }
 
+export function getAllGigs() {
+  return axios.get(`${baseUrl}/live-music/gigs/`)
+}
+
 export function favorite(table, tableId) {
-  const response = axios.post(`${baseUrl}/${table}/${tableId}/favorite/`, headers())
-  console.log(headers())
-  console.log(response)
-  return response
+  return axios.post(`${baseUrl}/${table}/${tableId}/favorite/`, headers())
 }
 
 export function loginUser(formdata) {

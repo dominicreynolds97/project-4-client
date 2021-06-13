@@ -68,6 +68,37 @@ body {
   }
 }
 
+.gigs {
+  .gig-card {
+    margin: 5px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: $darkest-grey;
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    .logo {
+      width: 200px;
+      height: 200px;
+    }
+    .left-half {
+      flex: 1;
+      ul {
+        list-style: none;
+        text-align: left;
+      }
+    }
+    .right-half {
+      flex: 1;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: $darker-grey;
+      color: $hover-font-color;
+    }
+  }
+}
+
 .artist-show {
   .cover-image {
     display: flex;
@@ -136,6 +167,13 @@ body {
       &:focus {
         outline: none;
       }
+    }
+    .form-error {
+      border: 2px solid red;
+    }
+    .form-error-detail {
+      color: red;
+      margin-top: 0;
     }
     button {
       width: 200px;

@@ -7,6 +7,7 @@ import TrackCreate from './components/artists/TrackCreate'
 import ArtistIndex from './components/artists/ArtistIndex'
 import ArtistShow from './components/artists/ArtistShow'
 import LiveMusic from './components/liveMusic/LiveMusic'
+import GigIndex from './components/liveMusic/GigIndex'
 import LogIn from './components/account/LogIn'
 import Register from './components/account/Register'
 import Account from './components/account/Account'
@@ -23,6 +24,7 @@ function App() {
         <Route path='/releases/:id' component={ReleaseShow}/>
         <Route path='/artists/:id' component={ArtistShow}/>
         <Route path='/artists' component={ArtistIndex}/>
+        <Route path='/live-music/gigs' component={GigIndex}/>
         <Route path='/live-music' component={LiveMusic}/>
         <Route path='/login' component={LogIn}/>
         <Route path='/register' component={Register}/>

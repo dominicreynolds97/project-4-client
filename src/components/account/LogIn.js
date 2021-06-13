@@ -2,6 +2,7 @@ import useForm from '../../hooks/useForm'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
 
 export default function LogIn() {
   const history = useHistory()
@@ -9,6 +10,7 @@ export default function LogIn() {
     email: '',
     password: '',
   })
+  const [error, setError] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,7 +20,8 @@ export default function LogIn() {
       setToken(data.token)
       history.push('/')
     } catch (err) {
-      console.log(err)
+      console.log(err.response.data)
+      setError(err.response.data)
     }
   }
 
@@ -41,6 +44,7 @@ export default function LogIn() {
           value={formdata.password}
           onChange={handleChange}
         />
+        {error && <p className="form-error-detail">Incorrect Log In Details</p>}
         <button type="submit">Log In</button>
       </form>
     </section>

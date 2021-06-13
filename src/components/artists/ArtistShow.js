@@ -41,10 +41,10 @@ export default function ArtistShow() {
               <h1>{artist.name}</h1>
               <h3>{artist.location}</h3>
               <h4 className="genres">{artist.genres.map(genre => <span key={genre.name}>{genre.name}</span>)}</h4>
+              <p>{artist.description}</p>
             </div>
           </div>
           <div className="middle-card">
-            <p>{artist.description}</p>
             <ul>
               {artist.musicians.map(member => <li key={member.name}>{member.name}</li>)}
             </ul>
