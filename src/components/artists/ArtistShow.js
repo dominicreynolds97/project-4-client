@@ -30,6 +30,10 @@ export default function ArtistShow() {
     history.push(`/${table}/${id}`)
   }
 
+  const handleGenreClick = (genreId) => {
+    console.log(genreId)
+  }
+
   return (
     <div>
       {artist &&
@@ -40,7 +44,7 @@ export default function ArtistShow() {
             <div className="info">
               <h1>{artist.name}</h1>
               <h3>{artist.location}</h3>
-              <h4 className="genres">{artist.genres.map(genre => <span key={genre.name}>{genre.name}</span>)}</h4>
+              <h4 className="genres">{artist.genres.map(genre => <span className="pointer" onClick={() => handleGenreClick(genre.id)} key={genre.name}>{genre.name}</span>)}</h4>
               <p>{artist.description}</p>
             </div>
           </div>
@@ -49,6 +53,7 @@ export default function ArtistShow() {
               {artist.musicians.map(member => <li key={member.name}>{member.name}</li>)}
             </ul>
             <div className="favorite">
+              <label>Favorites: {artist.favoritedBy.length}</label>
               <button 
                 onClick={handleFavorite} 
                 className={`${favorited ? '' : 'not-'}favorited`}

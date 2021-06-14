@@ -31,7 +31,7 @@ export default function GigIndex() {
             <div className="right-half">
               <h3>{gig.venue.name}</h3>
               <h5>£{gig.price}</h5>
-              <h4>{gig.dateTime.toLocaleString(('en-US'))}</h4>
+              <h4>{new Date(gig.dateTime).toLocaleString(('en-US'))}</h4>
             </div>
           </div>
         ))

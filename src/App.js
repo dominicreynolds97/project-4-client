@@ -12,6 +12,7 @@ import LogIn from './components/account/LogIn'
 import Register from './components/account/Register'
 import Account from './components/account/Account'
 import ReleaseShow from './components/artists/ReleaseShow'
+import Releaseindex from './components/artists/ReleaseIndex'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/tracks/create' component={TrackCreate}/>
         <Route path='/tracks' component={TrackIndex}/>
         <Route path='/releases/:id' component={ReleaseShow}/>
+        <Route path='/releases' component={Releaseindex}/>
         <Route path='/artists/:id' component={ArtistShow}/>
         <Route path='/artists' component={ArtistIndex}/>
         <Route path='/live-music/gigs' component={GigIndex}/>

@@ -24,12 +24,20 @@ export function getSingleArtist(artistId) {
   return axios.get(`${baseUrl}/artists/${artistId}/`)
 }
 
+export function getAllReleases() {
+  return axios.get(`${baseUrl}/releases/`)
+}
+
 export function getSingleRelease(releaseId) {
   return axios.get(`${baseUrl}/releases/${releaseId}/`)
 }
 
 export function getAllGigs() {
   return axios.get(`${baseUrl}/live-music/gigs/`)
+}
+
+export function getAllGenres() {
+  return axios.get(`${baseUrl}/genres/`)
 }
 
 export function favorite(table, tableId) {

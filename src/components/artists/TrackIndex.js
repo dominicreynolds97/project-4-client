@@ -18,8 +18,8 @@ export default function TrackIndex() {
         tracks.map(track => (
           <div key={track.name}>
             <h3>{track.name}</h3>
-            <h4>{track.artist}</h4>
-            <a href={track.urls[0]} target="_blank" rel="noreferrer">Link</a>
+            <h4>{track.artist.name}</h4>
+            {track.urls && <a href={track.urls[0]} target="_blank" rel="noreferrer">Link</a>}
           </div>
         ))
         :

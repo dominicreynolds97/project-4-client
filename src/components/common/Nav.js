@@ -22,6 +22,7 @@ export default function Nav() {
       <div className="navbar-start">
         <Link to='/' className="navbar-item">Home</Link>
         <Link to="/artists" className="navbar-item">Artists</Link>
+        <Link to="/releases" className="navbar-item">Releases</Link>
         <Link to="/live-music/gigs" className="navbar-item dropdown">Live Music</Link>
       </div>
       <div className="navbar-end">

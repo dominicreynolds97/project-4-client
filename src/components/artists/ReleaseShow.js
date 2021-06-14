@@ -12,6 +12,7 @@ export default function ReleaseShow() {
   useEffect(() => {
     const getData = async () => {
       const { data } = await getSingleRelease(id)
+      data.tracks.sort((track1, track2) => track1.trackIndex < track2.trackIndex)
       setRelease(data)
       setFavorited(checkFavorite(data))
       console.log(data)
