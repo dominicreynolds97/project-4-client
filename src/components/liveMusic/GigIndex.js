@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getAllGigs } from '../../lib/api'
+import { useHistory } from 'react-router-dom'
 
 export default function GigIndex() {
   const [gigs, setGigs] = useState(null)
+  const history = useHistory()
 
   useEffect(() => {
     const getData = async () => {
@@ -13,11 +15,20 @@ export default function GigIndex() {
     getData()
   }, [])
 
+  const handleCardClick = (gigId) => {
+    history.push(`/live-music/gigs/${gigId}/`)
+  }
+
+  const handleCreateClick = () => {
+    history.push('/live-music/gigs/create/')
+  }
+
   return (
     <div className="gigs">
+      <button onClick={handleCreateClick}>Add a Gig</button>
       {gigs &&
         gigs.map(gig => (
-          <div key={gig.name} className="gig-card">
+          <div onClick={() => handleCardClick(gig.id)} key={gig.name} className="gig-card">
             <img className="logo" src={gig.headliner.logo}/>
             <div className="left-half">
               <h3>{gig.name}</h3>

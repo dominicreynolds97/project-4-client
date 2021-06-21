@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getAllTracks } from '../../lib/api'
 
 export default function TrackIndex() {
@@ -13,7 +13,7 @@ export default function TrackIndex() {
     getData()
   }, [])
   return (
-    <>
+    <div>
       {tracks ?
         tracks.map(track => (
           <div key={track.name}>
@@ -25,6 +25,6 @@ export default function TrackIndex() {
         :
         <h1>Loading</h1>
       }
-    </>
+    </div>
   )
 }

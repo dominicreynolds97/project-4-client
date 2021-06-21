@@ -28,7 +28,7 @@
 
 export function FilterSelect({ label, defaultOption, options, handleChange }) {
   return (
-    <>
+    <div>
       <label>{label}: </label>
       <select default={defaultOption} onChange={handleChange}>
         <option value={defaultOption}>All</option>
@@ -41,6 +41,6 @@ export function FilterSelect({ label, defaultOption, options, handleChange }) {
           </option>
         ))}
       </select>
-    </>
+    </div>
   )
 }

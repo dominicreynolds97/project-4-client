@@ -1,12 +1,13 @@
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { isAuthenticated, removeToken, getPayload } from '../../lib/auth'
-import { useState, useEffect } from 'react'
+import { isAuthenticated, removeToken } from '../../lib/auth'
+import { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
 
 export default function Nav() {
-  const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated())
+  const { user, checkLoggedIn } = useContext(UserContext)
   const history = useHistory()
   const location = useLocation()
-  // const { id } = getPayload()
+
 
   const handleLogout = () => {
     removeToken()
@@ -14,7 +15,7 @@ export default function Nav() {
   }
 
   useEffect(() => {
-    setIsLoggedIn(isAuthenticated)
+    checkLoggedIn()
   }, [location.pathname])
 
   return (
@@ -26,16 +27,16 @@ export default function Nav() {
         <Link to="/live-music/gigs" className="navbar-item dropdown">Live Music</Link>
       </div>
       <div className="navbar-end">
-        {isLoggedIn ?
-          <>
+        {user ?
+          <div>
             <div className="navbar-item pointer" onClick={handleLogout}>Log Out</div>
-            <Link to="/account" className="navbar-item">Account</Link>
-          </>
+            <Link to="/account" className="navbar-item">{user.username}</Link>
+          </div>
           :
-          <>
+          <div>
             <Link to="/login" className="navbar-item">Log In</Link>
             <Link to="/register" className="navbar-item">Register</Link>
-          </>
+          </div>
         }
         
       </div>

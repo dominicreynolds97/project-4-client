@@ -2,11 +2,18 @@ import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { getSingleArtist, favorite } from '../../lib/api'
 import { checkFavorite } from '../../hooks/checkFavorite'
-import DisplayCard from './DisplayCard'
+import FavoriteRow from '../account/FavoriteRow'
+import EditArtistForm from './EditArtistForm'
 
 export default function ArtistShow() {
   const [artist, setArtist] = useState(null)
+  const [editing, setEditing] = useState(false)
   const [favorited, setFavorited] = useState(false)
+  const [releases, setReleases] = useState({
+    albums: [],
+    eps: [],
+    singles: [], 
+  })
   const { id } = useParams()
   const history = useHistory()
   console.log(id)
@@ -17,9 +24,16 @@ export default function ArtistShow() {
       console.log(data)
       setArtist(data)
       setFavorited(checkFavorite(data))
+      setReleases({
+        albums: data.releases.filter(release => release.type === 'Album'),
+        eps: data.releases.filter(release => release.type === 'EP'),
+        singles: data.releases.filter(release => release.type === 'Single'),
+      })
     }
     getData()
   }, [id])
+
+  console.log(releases)
 
   const handleFavorite = async () => {
     await favorite('artists', id)
@@ -34,12 +48,16 @@ export default function ArtistShow() {
     console.log(genreId)
   }
 
+  const handleEdit = () => {
+    setEditing(!editing)
+  }
+
   return (
-    <div>
-      {artist &&
+    <>
+      {(artist && !editing) ?
         <div className="artist-show">
 
-          <div className="cover-image">
+          <div className="cover">
             <img className="logo" src={artist.logo}/>
             <div className="info">
               <h1>{artist.name}</h1>
@@ -60,20 +78,54 @@ export default function ArtistShow() {
               >
                 Favorite{favorited && 'd'}
               </button>
+              <button
+                onClick={handleEdit}
+              >Edit</button>
             </div>
           </div>
           <div className="releases">
-            {artist.releases.map(release => (
-              <DisplayCard
-                key={release.name}
-                handleClick={handleClick}
-                {...release}
-                table="releases"
-              />
-            ))}
+            {releases.albums.length > 0 && 
+              <>
+                <label>Albums</label>
+                <FavoriteRow
+                  props={releases.albums}
+                  handleClick={handleClick}
+                  table="releases"
+                />
+              </>
+            }
+            {releases.eps.length > 0 && 
+              <>
+                <label>EPs</label>
+                <FavoriteRow
+                  props={releases.eps}
+                  handleClick={handleClick}
+                  table="releases"
+                />
+              </>
+            }
+            {releases.singles.length > 0 &&
+              <>
+                <label>Singles</label>
+                <FavoriteRow
+                  props={releases.singles}
+                  handleClick={handleClick}
+                  table="releases"
+                />
+              </>
+            }
           </div>
         </div>
+        :
+        <>
+          {editing &&
+            <EditArtistForm
+              artist={artist}
+              setEditing={setEditing}
+            />
+          }
+        </>
       }
-    </div>
+    </>
   )
 }

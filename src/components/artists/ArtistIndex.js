@@ -87,6 +87,7 @@ export default function ArtistIndex() {
               key={artist.name}
               handleClick={handleClick}
               table="artists"
+              cardType="adaptive"
               {...artist}
             />
           ))

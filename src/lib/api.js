@@ -16,12 +16,20 @@ export function createTrack(formdata) {
   return axios.post(`${baseUrl}/tracks/`, formdata, headers)
 }
 
+export function createArtist(formdata) {
+  return axios.post(`${baseUrl}/artists/`, formdata, headers)
+}
+
 export function getAllArtists() {
   return axios.get(`${baseUrl}/artists/`)
 }
 
 export function getSingleArtist(artistId) {
   return axios.get(`${baseUrl}/artists/${artistId}/`)
+}
+
+export function updateSingleArtist(artistId, formdata) {
+  return axios.put(`${baseUrl}/artists/${artistId}/`, formdata, headers)
 }
 
 export function getAllReleases() {
@@ -36,8 +44,24 @@ export function getAllGigs() {
   return axios.get(`${baseUrl}/live-music/gigs/`)
 }
 
+export function getSingleGig(gigId) {
+  return axios.get(`${baseUrl}/live-music/gigs/${gigId}/`)
+}
+
+export function createGig(formdata) {
+  return axios.post(`${baseUrl}/live-music/gigs/create/`, formdata, headers)
+}
+
+export function getAllVenues() {
+  return axios.get(`${baseUrl}/live-music/venues/`)
+}
+
 export function getAllGenres() {
   return axios.get(`${baseUrl}/genres/`)
+}
+
+export function createGenre(newGenre) {
+  return axios.post(`${baseUrl}/genres/`, newGenre)
 }
 
 export function favorite(table, tableId) {

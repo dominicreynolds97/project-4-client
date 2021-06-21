@@ -31,7 +31,7 @@ export default function Releaseindex() {
   }
 
   return (
-    <>
+    <div>
       <h1>Releases</h1>
       <FilterSelect
         label="Release Type"
@@ -46,11 +46,12 @@ export default function Releaseindex() {
               key={release.name}
               handleClick={handleClick}
               table="releases"
+              cardType="adaptive"
               {...release}
             />
           ))
         }
       </div>
-    </>
+    </div>
   )
 }

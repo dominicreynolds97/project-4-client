@@ -1,7 +1,10 @@
+@use 'sass:math';
+
 $hover-font-color: rgb(76, 135, 207);
 $dark-grey: rgb(72, 72, 72);
 $darker-grey: rgb(64, 64, 64);
 $darkest-grey: rgb(20, 19, 19);
+
 
 * {
   font-family: Arial, Helvetica, sans-serif
@@ -17,29 +20,61 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
 }
-.account {
-  .favorite-row {
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
+
+@mixin hover-pointer {
+  cursor: pointer;
+  color: $hover-font-color;
+  color: $hover-font-color;
+}
+
+@mixin scrollable-row {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+@mixin card-size($card-width: 200px) {
+  width: $card-width;
+  .logo {
+    width: 100%;
+    height: $card-width;
   }
 }
 
-.display-card {
+.favorite-row {
+  @include scrollable-row
+}
+
+.home {
+  display: flex;
+  height: calc(100vh - 3em - 1px);
+  background-color: black;
+  box-shadow: inset 0 0 100px 60px $darkest-grey;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 60px;
+  }
+  p {
+    font-size: 20px;
+  }
+}
+
+.fixed-display-card {
+  
   background-color: $darkest-grey;
   text-align: center;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   margin: 5px;
-  width:200px;
+  width: 200px;
   h4 {
     margin: 10px 0;
   }
   &:hover {
-    cursor: pointer;
-    background-color: $darker-grey;
-    color: $hover-font-color;
+    @include hover-pointer;
   }
   .logo {
     width: 200px;
@@ -47,9 +82,38 @@ body {
   }
 }
 
+.adaptive-display-card {
+  background-color: $darkest-grey;
+  text-align: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 5px;
+  h4 {
+    margin: 10px 0;
+  }
+  &:hover {
+    @include hover-pointer;
+  }
+
+  @media (min-width: 1551px) {
+    @include card-size(13.6vw);
+  }
+  @media (min-width: 1231px) and (max-width: 1550px) {
+    @include card-size(15.8vw);
+  }
+  @media (min-width: 1024px) and (max-width: 1230px) {
+    @include card-size(19vw);
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @include card-size(23.5vw);
+  }
+  @media (max-width: 767px) {
+    @include card-size(31vw);
+  }
+}
+
 .pointer:hover {
-  cursor: pointer;
-  color: $hover-font-color;
+  @include hover-pointer
 }
 
 .navbar {
@@ -98,15 +162,13 @@ body {
       flex: 1;
     }
     &:hover {
-      cursor: pointer;
-      background-color: $darker-grey;
-      color: $hover-font-color;
+      @include hover-pointer;
     }
   }
 }
 
 .artist-show {
-  .cover-image {
+  .cover {
     display: flex;
     flex-direction: row;
     .logo {
@@ -158,7 +220,7 @@ body {
   }
 }
 
-.auth {
+@mixin form {
   text-align: center;
   form {
     display: flex;
@@ -174,12 +236,20 @@ body {
         outline: none;
       }
     }
+    .multi-select {
+      width: 400px;
+      color: $darker-grey;
+    }
     .form-error {
       border: 2px solid red;
     }
     .form-error-detail {
       color: red;
       margin-top: 0;
+    }
+
+    .description {
+      height: 100px;
     }
     button {
       width: 200px;
@@ -196,4 +266,28 @@ body {
       }
     }
   }
+}
+
+.auth {
+  @include form
+}
+
+.create-form {
+  @include form
+}
+
+.artist-form {
+  @include form
+}
+
+.release {
+  .artwork {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.overlay {
+  display: block;
+  background-color: rgba(0,0,0,0.7);
 }

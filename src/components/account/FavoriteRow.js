@@ -9,6 +9,7 @@ export default function FavoriteRow({ props, handleClick, table }) {
           {...card}
           handleClick={handleClick}
           table={table}
+          cardType="fixed"
         />
       ))}
     </div>

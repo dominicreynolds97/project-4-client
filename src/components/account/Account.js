@@ -1,20 +1,14 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { getSingleUser } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
 import { useHistory } from 'react-router-dom'
 import FavoriteRow from './FavoriteRow'
+import { UserContext } from '../../context/UserContext'
+import { connectToSpotify } from '../../lib/spotifyApi'
 
 export default function Account() {
-  const [user, setUser] = useState(null)
+  const { user } = useContext(UserContext)
   const history = useHistory()
-
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await getSingleUser(getPayload().sub)
-      setUser(data)
-    }
-    getData()
-  }, [])
 
   const handleClick = (table, id) => {
     history.push(`/${table}/${id}`)
@@ -26,6 +20,7 @@ export default function Account() {
         <div>
           <h1>Account</h1>
           <h3>{user.username}</h3>
+          <button onClick={connectToSpotify}>Connect to Spotify</button>
           <h3>Favorite Artists</h3>
           <FavoriteRow
             props={user.favoriteArtists}
