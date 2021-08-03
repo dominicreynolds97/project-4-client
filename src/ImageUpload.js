@@ -28,7 +28,7 @@ function ImageUpload({ onUpload }) {
 
   return (
     <>
-      {image && <img src={image} alt="uploaded profile"/>}
+      {image && <img src={image} alt="uploaded profile" className="form-image"/>}
       {!image && <button onClick={handleUpload} type="button">Upload Image</button>}
     </>
   )

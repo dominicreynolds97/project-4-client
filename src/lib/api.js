@@ -1,6 +1,6 @@
 import axios from 'axios'
 const baseUrl = '/api'
-import { getToken, getPayload } from './auth'
+import { getToken } from './auth'
 
 function headers() {
   return { 
@@ -14,6 +14,10 @@ export function getAllTracks() {
 
 export function createTrack(formdata) {
   return axios.post(`${baseUrl}/tracks/`, formdata, headers)
+}
+
+export function createRelease(formdata) {
+  return axios.post(`${baseUrl}/releases/`, formdata, headers)
 }
 
 export function createArtist(formdata) {
@@ -52,8 +56,16 @@ export function createGig(formdata) {
   return axios.post(`${baseUrl}/live-music/gigs/create/`, formdata, headers)
 }
 
+export function deleteGig(gigId) {
+  return axios.delete(`${baseUrl}/live-music/gigs/${gigId}/`, headers)
+}
+
 export function getAllVenues() {
   return axios.get(`${baseUrl}/live-music/venues/`)
+}
+
+export function createVenue(formdata) {
+  return axios.post(`${baseUrl}/live-music/venues/`, formdata, headers)
 }
 
 export function getAllGenres() {

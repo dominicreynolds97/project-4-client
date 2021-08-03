@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect} from 'react'
+import { createContext, useState, useEffect } from 'react'
 import { getSingleUser } from '../lib/api'
 import { getPayload, isAuthenticated } from '../lib/auth'
 

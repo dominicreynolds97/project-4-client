@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import useForm from '../../hooks/useForm'
 import { updateSingleArtist } from '../../lib/api'
 import ArtistForm from './ArtistForm'
@@ -12,6 +13,7 @@ export default function EditArtistForm({ artist, setEditing }) {
     location: artist.location,
     genres: artist.genres.map(genre => genre.id),
   })
+  const [mounting, setMounting] = useState(true)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,12 +26,23 @@ export default function EditArtistForm({ artist, setEditing }) {
     }
   }
 
+  // A neccecary workaround due to to the formErrors starting as the formData
+  if (mounting) {
+    const keys = Object.keys(formErrors)
+    const nullFormErrors = {}
+    keys.forEach(key => nullFormErrors[key] = null)
+    console.log(nullFormErrors)
+    setFormErrors(nullFormErrors)
+    setMounting(false)
+  }
+
   return (
     <div className="artist-form">
       <ArtistForm
         formdata={formdata}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        formErrors={formErrors}
       />
     </div>
   )

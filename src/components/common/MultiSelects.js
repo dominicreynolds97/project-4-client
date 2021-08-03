@@ -2,7 +2,7 @@ import CreatableSelect from 'react-select/creatable'
 import { useEffect, useState } from 'react'
 import { createGenre, getAllGenres } from '../../lib/api'
 
-export function GenreMultiSelect({ handleChange, formdata }) {
+export function GenreMultiSelect({ handleChange, formdata, formErrors, setFormErrors }) {
   const [genres, setGenres] = useState(null)
   const [addingGenre, setAddingGenre] = useState(false)
 
@@ -25,7 +25,7 @@ export function GenreMultiSelect({ handleChange, formdata }) {
       await createGenre({ name: genre })
       setAddingGenre(true)
     } catch (err) {
-      console.log(err)
+      setFormErrors(err)
     }
   }
   console.log(formdata.genres)
@@ -37,7 +37,7 @@ export function GenreMultiSelect({ handleChange, formdata }) {
           <label>Genres</label>
           <CreatableSelect
             isMulti
-            className="multi-select"
+            className={`multi-select ${formErrors.genres ? 'form-error' : ''}`}
             name="genres"
             onChange={selected => 
               handleMultiSelectChange(selected, 'genres')

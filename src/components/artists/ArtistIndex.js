@@ -17,8 +17,9 @@ export default function ArtistIndex() {
   useEffect(() => {
     const getData = async () => {
       const { data } = await getAllArtists()
-      setArtists(data)
-      setFilteredArtists(data)
+      const filteredData = data.filter(artist => artist.name !== 'Anyone')
+      setArtists(filteredData)
+      setFilteredArtists(filteredData)
       const res = await getAllGenres()
       setGenres(res.data)
     }
@@ -76,7 +77,7 @@ export default function ArtistIndex() {
       />
       <FilterSelect
         label="Location"
-        options={['Belfast']}
+        options={['Belfast', 'Derry']}
         defaultOption="All"
         handleChange={handleLocationChange}
       />

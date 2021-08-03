@@ -1,6 +1,6 @@
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { isAuthenticated, removeToken } from '../../lib/auth'
-import { useState, useEffect, useContext } from 'react'
+import { removeToken } from '../../lib/auth'
+import { useEffect, useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 
 export default function Nav() {
@@ -16,7 +16,7 @@ export default function Nav() {
 
   useEffect(() => {
     checkLoggedIn()
-  }, [location.pathname])
+  }, [location.pathname, checkLoggedIn])
 
   return (
     <nav className="navbar">

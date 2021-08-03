@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { getSingleArtist, favorite } from '../../lib/api'
 import { checkFavorite } from '../../hooks/checkFavorite'
+import { UserContext } from '../../context/UserContext'
 import FavoriteRow from '../account/FavoriteRow'
 import EditArtistForm from './EditArtistForm'
 
 export default function ArtistShow() {
+  const { user } = useContext(UserContext)
   const [artist, setArtist] = useState(null)
   const [editing, setEditing] = useState(false)
   const [favorited, setFavorited] = useState(false)
@@ -21,7 +23,6 @@ export default function ArtistShow() {
   useEffect(() => {
     const getData = async () => {
       const { data } = await getSingleArtist(id)
-      console.log(data)
       setArtist(data)
       setFavorited(checkFavorite(data))
       setReleases({
@@ -52,6 +53,10 @@ export default function ArtistShow() {
     setEditing(!editing)
   }
 
+  const createRelease = () => {
+    history.push(`/artists/${artist.id}/create-release`)
+  }
+
   return (
     <>
       {(artist && !editing) ?
@@ -78,9 +83,16 @@ export default function ArtistShow() {
               >
                 Favorite{favorited && 'd'}
               </button>
-              <button
-                onClick={handleEdit}
-              >Edit</button>
+              {user && user.id === artist.owner &&
+                <>
+                  <button
+                    onClick={handleEdit}
+                  >Edit</button>
+                  <button
+                    onClick={createRelease}
+                  >Add a Release</button>
+                </>
+              }
             </div>
           </div>
           <div className="releases">

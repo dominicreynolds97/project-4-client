@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { getSingleUser } from '../../lib/api'
-import { getPayload } from '../../lib/auth'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import FavoriteRow from './FavoriteRow'
 import { UserContext } from '../../context/UserContext'
-import { connectToSpotify } from '../../lib/spotifyApi'
+//import { connectToSpotify } from '../../lib/spotifyApi'
 
 export default function Account() {
   const { user } = useContext(UserContext)
@@ -14,13 +12,17 @@ export default function Account() {
     history.push(`/${table}/${id}`)
   }
 
+  const comingSoon = () => {
+    window.alert('Coming Soon')
+  }
+
   return (
     <div className="account">
       {user &&
         <div>
           <h1>Account</h1>
           <h3>{user.username}</h3>
-          <button onClick={connectToSpotify}>Connect to Spotify</button>
+          <button onClick={comingSoon}>Connect to Spotify</button>
           <h3>Favorite Artists</h3>
           <FavoriteRow
             props={user.favoriteArtists}

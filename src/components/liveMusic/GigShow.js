@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { getSingleGig } from '../../lib/api'
+import { getSingleGig, deleteGig } from '../../lib/api'
 
 export default function GigShow() {
   const [gig, setGig] = useState(null)
@@ -19,6 +19,11 @@ export default function GigShow() {
     history.push(`/artists/${artistId}/`)
   }
 
+  const handleDelete = async () => {
+    await deleteGig(gig.id)
+    history.push('/live-music/gigs/')
+  }
+
   return (
     <div className="gig-show">
       {gig &&
@@ -31,6 +36,7 @@ export default function GigShow() {
           {gig.supportArtists.map(artist => (
             <h4 className="pointer" onClick={() => handleArtistClick(artist.id)} key={artist.name}>{artist.name}</h4>
           ))}
+          <button onClick={handleDelete}>Delete</button>
         </>
       }
     </div>

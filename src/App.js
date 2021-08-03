@@ -9,6 +9,8 @@ import TrackIndex from './components/artists/TrackIndex'
 import TrackCreate from './components/artists/TrackCreate'
 import ArtistIndex from './components/artists/ArtistIndex'
 import ArtistShow from './components/artists/ArtistShow'
+import CreateArtistForm from './components/artists/CreateArtistForm'
+import CreateReleaseForm from './components/artists/CreateReleaseForm'
 import LiveMusic from './components/liveMusic/LiveMusic'
 import GigIndex from './components/liveMusic/GigIndex'
 import GigShow from './components/liveMusic/GigShow'
@@ -32,6 +34,8 @@ function App() {
               <Route path='/tracks' component={TrackIndex}/>
               <Route path='/releases/:id' component={ReleaseShow}/>
               <Route path='/releases' component={Releaseindex}/>
+              <Route path='/artists/create' component={CreateArtistForm}/>
+              <Route path='/artists/:id/create-release' component={CreateReleaseForm}/>
               <Route path='/artists/:id' component={ArtistShow}/>
               <Route path='/artists' component={ArtistIndex}/>
               <Route path='/live-music/gigs/create' component={CreateGigForm}/>

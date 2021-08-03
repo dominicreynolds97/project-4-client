@@ -53,7 +53,7 @@ const callAuthorizationApi = (body) => {
   xhr.onload = handleAuthorizationResponse
 }
 const handleAuthorizationResponse = () => {
-  if (this.status == 200) {
-    c
+  if (this.status === 200) {
+    //
   }
 }
