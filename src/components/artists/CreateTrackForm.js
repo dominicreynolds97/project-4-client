@@ -32,7 +32,7 @@ export default function CreateTrackForm({ artistId, releaseId, trackIndex, setTr
       }
     }
     getData()
-  }, [artistId, handleChange, releaseName])
+  }, [])
 
   const resetFormData = () => {
     handleChange({ target: { name: 'name', value: '' } })

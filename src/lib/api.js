@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api'
+import { baseUrl } from '../config'
 import { getToken } from './auth'
 
 function headers() {
@@ -58,6 +58,10 @@ export function createGig(formdata) {
 
 export function deleteGig(gigId) {
   return axios.delete(`${baseUrl}/live-music/gigs/${gigId}/`, headers)
+}
+
+export function deleteRelease(releaseId) {
+  return axios.delete(`${baseUrl}/releases/${releaseId}/`, headers)
 }
 
 export function getAllVenues() {

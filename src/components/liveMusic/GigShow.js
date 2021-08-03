@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { getSingleGig, deleteGig } from '../../lib/api'
+import { UserContext } from '../../context/UserContext'
 
 export default function GigShow() {
   const [gig, setGig] = useState(null)
   const { id } = useParams()
   const history = useHistory()
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     const getData = async () => {
@@ -31,12 +33,20 @@ export default function GigShow() {
           <h1>{gig.name}</h1>
           <h3>{gig.venue.name}</h3>
           <p>{gig.venue.location}</p>
-          <h3>£{gig.price}</h3>
-          <h2 className="pointer" onClick={() => handleArtistClick(gig.headliner.id)}>{gig.headliner.name}</h2>
-          {gig.supportArtists.map(artist => (
-            <h4 className="pointer" onClick={() => handleArtistClick(artist.id)} key={artist.name}>{artist.name}</h4>
-          ))}
-          <button onClick={handleDelete}>Delete</button>
+          <h3>{gig.price == 0 ? 'Free Entry' : `£${gig.price}`}</h3>
+          {gig.headliner.name === 'Anyone' ?
+            <h2>Open to anyone who wants to play!</h2>
+            :
+            <>
+              <h2 className="pointer" onClick={() => handleArtistClick(gig.headliner.id)}>{gig.headliner.name}</h2>
+              {gig.supportArtists.map(artist => (
+                <h4 className="pointer" onClick={() => handleArtistClick(artist.id)} key={artist.name}>{artist.name}</h4>
+              ))}
+            </>
+          }
+          {user.id == 1 &&
+            <button onClick={handleDelete}>Delete</button>
+          }
         </>
       }
     </div>

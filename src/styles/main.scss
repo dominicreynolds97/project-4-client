@@ -203,6 +203,12 @@ body {
   }
 }
 
+.gig-show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .artist-show {
   .cover {
     display: flex;

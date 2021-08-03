@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { getSingleRelease, favorite } from '../../lib/api'
+import { getSingleRelease, favorite, deleteRelease } from '../../lib/api'
 import { checkFavorite } from '../../hooks/checkFavorite'
+import { UserContext } from '../../context/UserContext'
 
 
 export default function ReleaseShow() {
@@ -9,6 +10,7 @@ export default function ReleaseShow() {
   const [favorited, setFavorited] = useState(false)
   const { id } = useParams()
   const history = useHistory()
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     const getData = async () => {
@@ -38,6 +40,16 @@ export default function ReleaseShow() {
     history.push(`/artists/${artistId}/`)
   }
 
+  const handleDelete = async () => {
+    try {
+      await deleteRelease(release.id)
+      history.push(`/artists/${release.artist.id}`)
+    } catch (err) {
+      window.alert('Something Went Wrong')
+      console.log(err.response.data)
+    }
+  }
+
   return (
     <div className="release">
       {release &&
@@ -57,6 +69,11 @@ export default function ReleaseShow() {
             >
               Favorite{favorited && 'd'}
             </button>
+            {user.id === release.owner &&
+              <button
+                onClick={handleDelete}
+              >Delete</button>
+            }
           </div>
         </div>
       }

@@ -76,7 +76,7 @@ export default function GigIndex() {
 
   return (
     <div className="gigs">
-      <button onClick={handleCreateClick}>Add a Gig</button>
+      {user && <button onClick={handleCreateClick}>Add a Gig</button>}
       <FilterSelect
         label="Filter"
         options={['Favorite artists', 'Favorite venues', 'Next 7 days', 'Free Entry', 'Price low to high', 'Price high to low']}
