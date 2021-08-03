@@ -30,7 +30,7 @@ export default function ArtistIndex() {
     let filtered = filterByGenre(filterSelected.genre, artists)
     filtered = filterByLocation(filterSelected.location, filtered)
     setFilteredArtists(filtered)
-  } 
+  }
 
   const handleClick = (table, id) => {
     history.push(`/${table}/${id}`)
@@ -67,22 +67,24 @@ export default function ArtistIndex() {
   }
 
   return (
-    <>
+    <div className="index">
       <h1>Artists</h1>
-      <FilterSelect
-        label="Genres"
-        options={genres}
-        defaultOption="All"
-        handleChange={handleGenreChange}
-      />
-      <FilterSelect
-        label="Location"
-        options={['Belfast', 'Derry']}
-        defaultOption="All"
-        handleChange={handleLocationChange}
-      />
+      <div className="select-row">
+        <FilterSelect
+          label="Genres"
+          options={genres}
+          defaultOption="All"
+          handleChange={handleGenreChange}
+        />
+        <FilterSelect
+          label="Location"
+          options={['Belfast', 'Derry']}
+          defaultOption="All"
+          handleChange={handleLocationChange}
+        />
+      </div>
       <div className="artist-index">
-        {filteredArtists && 
+        {filteredArtists &&
           filteredArtists.map(artist => (
             <DisplayCard
               key={artist.name}
@@ -94,6 +96,6 @@ export default function ArtistIndex() {
           ))
         }
       </div>
-    </>
+    </div>
   )
 }

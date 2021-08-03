@@ -31,14 +31,16 @@ export default function Releaseindex() {
   }
 
   return (
-    <div>
+    <div className="index">
       <h1>Releases</h1>
-      <FilterSelect
-        label="Release Type"
-        defaultOption="All"
-        options={['Album', 'EP', 'Single']}
-        handleChange={handleTypeChange}
-      />
+      <div className="select-row">
+        <FilterSelect
+          label="Release Type"
+          defaultOption="All"
+          options={['Album', 'EP', 'Single']}
+          handleChange={handleTypeChange}
+        />
+      </div>
       <div className="artist-index">
         {filteredReleases && 
           filteredReleases.map(release => (
