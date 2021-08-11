@@ -1,4 +1,4 @@
-export default function FavoriteCard({ name, logo, artwork, id, handleClick, table, cardType }) {
+export default function DisplayCard({ name, logo, artwork, id, handleClick, table, cardType }) {
   console.log(cardType)
   return (
     <div className={`${cardType}-display-card`} key={name} onClick={() => handleClick(table, id)}>
