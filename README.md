@@ -74,12 +74,12 @@ and CRUD functionality for at least a couple of models
 Due to the complexity of the project, it required thorough planning before I even wrote a line of code. I began by creating a ERD diagram to map out the tables in the back end. Even though I diverged a little from the original plan, this was an essential phase in order to be ready to create my project. 
 As there were a large number of tables and relationships, I spent time thinking about what I would need and how the tables would relate to each other. Such as by foreign key or with a many to many relationship. 
 
-![](images/Screenshot%202021-06-11%20at%2021.22.36.png)
+![Screenshot](Screenshot%202021-06-11%20at%2021.22.36.png)
 - - - -
 ### Front End Preparation
 
 I decided that I wanted to display the index pages for the Artists and releases in a similar way the Spotify desktop client, with the artwork being displayed on cards, all of which are a link to a display page.  Using Excalidraw.com, I white boarded out my planned layout for each page that would be needed to display data.  
-![](images/project_4_whiteboard.png)
+![Screenshot](project_4_whiteboard.png)
 - - - -
 ### Building the PostgreSQL database using Django.py
 
