@@ -187,6 +187,8 @@ In order to be ready to build all of the components I needed, I had to connect m
 
 I wanted these index pages to show multiple cards with the logo and artwork for the artists and releases respectively, the name was to be displayed underneath.  I created a card component, which was used to display one artist or release. Upon navigating to an index page, a get all request would be made for the artists or releases, this information would then be mapped onto the page using the display cards. An original array of objects would be created, and then filtered into another array, depending on what the user wants to see (this filtered array starts the same as the original). I wanted the display cards to adapt to the screen size, to do this I used 5 media queries, and made the card size change depending on the screen width. I found SCSS very helpful for this as I could nest the queries inside of the display card class, it took some fine tuning to get this right. For the gig index page, I created a different card that displayed more information than for artists and releases. There are also more options to filter with the gig page.
 
+![Screenshot](Screenshot%202021-08-04%20at%2014.39.52.png)
+
 ```
 export default function DisplayCard({ name, logo, artwork, id, handleClick, table, cardType }) {
   console.log(cardType)
