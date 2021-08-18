@@ -279,7 +279,7 @@ The display pages could definitely be styled in a more aesthetic way. This is th
 - - - -
 #### Comments
 
-I created the backend functionality for comments, however due to time constraints, I never managed to achieve this. I would like for users to be able to comment on everything that they want to. 
+I created the backend functionality for comments, however due to time constraints, I never managed to achieve this in the front end. I would like for users to be able to comment on everything that they want to. 
 - - - -
 
 ## Known Bugs
