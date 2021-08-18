@@ -33,7 +33,7 @@ I decided that I wanted to display the index pages for the Artists and releases 
 #### Set Up and Models
 I began by setting up the Django.py project using PipEnv in a Git folder. I then used my ERD diagram to create the models, each table had to relate to each other in many different ways, this made the planning I had done pay off. The way the database need up looking wasn’t identical to the ERD diagram, as as I began to implement it, I realised that I would need to do it in different ways to get it to work correctly. Django.py handles the foreign key and many to many relationships, which made building the models easy as I only had to make 11 tables. The number of many to many relationships is the main reason why there ended up being 36 tables in the database when I had finished building it. 
 
-```
+```Python
 class Artist(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
@@ -77,7 +77,7 @@ class Artist(models.Model):
 
 I decided to make my requests in a separate hooks folder as I knew that this code would be repeated frequently if I did not.  Each request was a function, in which the necessary parameters would be passed into in order to manipulate the database and retrieve information from it. 
 
-```
+```Python
 def get_all(model, serial):
     data = model.objects.all()
     serialized_data = serial(data, many=True)
@@ -134,7 +134,7 @@ def favorite(model, serial, request, pk):
 
 I initially built two views for every individual model that I would be displaying, one populated for detailed view and the other unpopulated for list view.  This ended up being a lot of repeated code, so instead, in my hooks folder I would store base view classes for list and detail that I would call and pass in the individual models that I would need. In these classes I would call the requests that I mentioned above as methods in the classes. I additionally created a favourite view that would allow for users to favourite the things that they like the most. I then called these views for each model and passed in the appropriate serializer as seen below. Finally, I created a URL and serialiser for each view, to allow for the front end to make requests.
 
-```
+```Python
 class ListView(APIView):
     def __init__(self, model, serial):
         self.model = model
@@ -160,7 +160,7 @@ class DetailView(APIView):
         return update_one(self.model, self.serial, request, pk)
 ```
 
-```
+```Python
 class ArtistListView(ListView):
     def __init__(self):
         self.model = Artist
@@ -189,7 +189,7 @@ I wanted these index pages to show multiple cards with the logo and artwork for 
 
 ![Screenshot](Screenshot%202021-08-04%20at%2014.39.52.png)
 
-```
+```JavaScript
 export default function DisplayCard({ name, logo, artwork, id, handleClick, table, cardType }) {
   console.log(cardType)
   return (
@@ -202,7 +202,7 @@ export default function DisplayCard({ name, logo, artwork, id, handleClick, tabl
 
 ```
 
-```
+```JavaScript
 <div className="artist-index">
         {filteredArtists &&
           filteredArtists.map(artist => (
@@ -218,7 +218,7 @@ export default function DisplayCard({ name, logo, artwork, id, handleClick, tabl
 </div>
 ```
 
-```
+```SCSS
 .adaptive-display-card {
   background-color: $darkest-grey;
   text-align: center;
