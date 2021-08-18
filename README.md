@@ -277,6 +277,11 @@ Being able to let the users know of local gigs in their area that they may be in
 
 The display pages could definitely be styled in a more aesthetic way. This is the same case with the home page
 - - - -
+#### Comments
+
+I created the backend functionality for comments, however due to time constraints, I never managed to achieve this. I would like for users to be able to comment on everything that they want to. 
+- - - -
+
 ## Known Bugs
 
 * If a user attempts to create a new release, it must be posted before the songs are added. This caused me to workaround by making the user move to a new form, however if they navigate away, the tracks will not be added.
